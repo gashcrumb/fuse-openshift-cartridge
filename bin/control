@@ -54,12 +54,6 @@ function setup() {
 		replace_property_value ensemble.auto.start true $FUSE_SYSPROPS_FILE
 		echo "zookeeper.server.port=${OPENSHIFT_FUSE_ZOOKEEPER_PORT}" >> $FUSE_SYSPROPS_FILE
 		echo "zookeeper.server.connection.port=${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}" >> $FUSE_SYSPROPS_FILE
-
-    FABRIC8_ENSEMBLE_AUTO_START=true
-    export FABRIC8_ENSEMBLE_AUTO_START
-
-    FABRIC8_AGENT_AUTO_START=true
-    export FABRIC8_AGENT_AUTO_START
 	fi
 
 	client_result ""
@@ -80,7 +74,7 @@ function setup() {
 	cart_props "username=admin"
 	cart_props "password=${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}"
 		
-	${FUSE_BIN_DIR}/start
+	${FUSE_BIN_DIR}/fabric8-start
 	wait_for_start    
 	
 	if $join; then
@@ -102,7 +96,7 @@ function start() {
     if [ ! -f $FABRIC_CHECKER ]; then
       setup
     else
-      ${FUSE_BIN_DIR}/start
+      ${FUSE_BIN_DIR}/fabric8-start
       wait_for_start    
     fi
     client_message "Started Fuse cart"
