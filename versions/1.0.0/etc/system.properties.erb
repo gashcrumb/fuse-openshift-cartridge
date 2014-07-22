@@ -96,14 +96,22 @@ ensemble.auto.start=false
 agent.auto.start=true
 
 #bind.address=<%= ENV['OPENSHIFT_FUSE_IP'] %>
+bind.address=0.0.0.0
+
 #publichostname=<%= ENV['OPENSHIFT_GEAR_DNS'] %>
-#global.resolver=publichostname
-#local.resolver=publichostname
-#profiles=hawtio openshift
+
+manualip=<%= ENV['OPENSHIFT_GEAR_DNS'] %>
+global.resolver=publichostname
+local.resolver=manualip
+
 
 org.osgi.service.http.connection.port=80
 org.osgi.service.http.port=<%= ENV['OPENSHIFT_FUSE_HTTP_PORT'] %>
+
 #org.ops4j.pax.web.listening.addresses=<%= ENV['OPENSHIFT_FUSE_IP'] %>
+org.ops4j.pax.web.listening.addresses=0.0.0.0
+
+#profiles=hawtio openshift
 
 fabric.environment=openshift
 
