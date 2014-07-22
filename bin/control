@@ -54,6 +54,12 @@ function setup() {
 		replace_property_value ensemble.auto.start true $FUSE_SYSPROPS_FILE
 		echo "zookeeper.server.port=${OPENSHIFT_FUSE_ZOOKEEPER_PORT}" >> $FUSE_SYSPROPS_FILE
 		echo "zookeeper.server.connection.port=${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}" >> $FUSE_SYSPROPS_FILE
+
+    FABRIC8_ENSEMBLE_AUTO_START=true
+    export FABRIC8_ENSEMBLE_AUTO_START
+
+    FABRIC8_AGENT_AUTO_START=true
+    export FABRIC8_AGENT_AUTO_START
 	fi
 
 	client_result ""
