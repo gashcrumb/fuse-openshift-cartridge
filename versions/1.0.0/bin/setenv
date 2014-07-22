@@ -66,4 +66,5 @@ export JAVA_MAX_MEM=${max_heap}M
 export JAVA_MAX_PERM_MEM=${max_permgen}M
 
 # Export options
-export JAVA_OPTS="-server -XX:+UnlockDiagnosticVMOptions -XX:+UnsyncloadClass -Xms$JAVA_MIN_MEM -Xmx$JAVA_MAX_MEM -XX:PermSize=$JAVA_PERM_MEM -XX:MaxPermSize=$JAVA_MAX_PERM_MEM"
+#export JAVA_OPTS="-server -XX:+UnlockDiagnosticVMOptions -XX:+UnsyncloadClass -Xms$JAVA_MIN_MEM -Xmx$JAVA_MAX_MEM -XX:PermSize=$JAVA_PERM_MEM -XX:MaxPermSize=$JAVA_MAX_PERM_MEM"
+export JAVA_OPTS="-server -XX:+UnlockDiagnosticVMOptions -Xms$JAVA_MIN_MEM -Xmx$JAVA_MAX_MEM -XX:PermSize=$JAVA_PERM_MEM -XX:MaxPermSize=$JAVA_MAX_PERM_MEM"
