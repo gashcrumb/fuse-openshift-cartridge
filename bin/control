@@ -47,10 +47,22 @@ function setup() {
 		join=true
 	# Turn into a fabric root container
 	else
-		# Additional system properties
+		# 		client_result "Configuring zookeeper server"
 		client_result "Configuring zookeeper server"
+
+    export FABRIC8_KARAF_NAME=$OPENSHIFT_APP_NAME
+    export FABRIC8_KARAF_ID=$OPENSHIFT_APP_NAME
+    export CONTAINER_NAME=$OPENSHIFT_APP_NAME
+    export FABRIC8_BINDADDRESS=$OPENSHIFT_FUSE_IP
+    export FABRIC8_LISTEN_ADDRESS=$OPENSHIFT_FUSE_IP
+    export FABRIC8_PROFILES=openshift
+    export FABRIC8_GLOBAL_RESOLVER=publichostname
+    export FABRIC8_MANUALIP=$OPENSHIFT_GEAR_DNS
+    export FABRIC8_LOCAL_CONTAINER_ADDRESS=$OPENSHIFT_GEAR_DNS
+    export FABRIC8_FABRIC_ENVIRONMENT=openshift
+
 		export OPENSHIFT_FUSE_ZOOKEEPER_URL=${OPENSHIFT_GEAR_DNS}:${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}
-                set_env_var OPENSHIFT_FUSE_ZOOKEEPER_URL "${OPENSHIFT_FUSE_ZOOKEEPER_URL}" env
+    set_env_var OPENSHIFT_FUSE_ZOOKEEPER_URL "${OPENSHIFT_FUSE_ZOOKEEPER_URL}" env
 		replace_property_value ensemble.auto.start true $FUSE_SYSPROPS_FILE
 		echo "zookeeper.server.port=${OPENSHIFT_FUSE_ZOOKEEPER_PORT}" >> $FUSE_SYSPROPS_FILE
 		echo "zookeeper.server.connection.port=${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}" >> $FUSE_SYSPROPS_FILE
