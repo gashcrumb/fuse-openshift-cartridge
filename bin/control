@@ -23,12 +23,12 @@ function setup() {
     elif [ ! -z "${OPENSHIFT_FUSE_DOMAIN_ZOOKEEPER_PASSWORD:-}" ]; then
 		client_result "Using provided password from domain"
 		export OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD=${OPENSHIFT_FUSE_DOMAIN_ZOOKEEPER_PASSWORD}
-                set_env_var OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD "${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}" env
+    set_env_var OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD "${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}" env
 	else
 		# generate password and setup env vars
 		client_result "Generating password"
 		export OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD=$(generate_password)
-                set_env_var OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD "${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}" env
+    set_env_var OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD "${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}" env
 	fi
 	# Store password
 	echo "admin=${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD},admin" > $FUSE_USRPROPS_FILE
@@ -51,21 +51,44 @@ function setup() {
 		client_result "Configuring zookeeper server"
 
     export FABRIC8_KARAF_NAME=$OPENSHIFT_APP_NAME
+    set_env_var FABRIC8_KARAF_NAME "${FABRIC8_KARAF_NAME}" env
+
     export FABRIC8_KARAF_ID=$OPENSHIFT_APP_NAME
-    export CONTAINER_NAME=$OPENSHIFT_APP_NAME
+    set_env_var FABRIC8_KARAF_ID "${FABRIC8_KARAF_ID}" env
+
+    export FABRIC8_CONTAINER_NAME=$OPENSHIFT_APP_NAME
+    set_env_var FABRIC8_CONTAINER_NAME "${FABRIC8_CONTAINER_NAME}" env
+
     export FABRIC8_BINDADDRESS=$OPENSHIFT_FUSE_IP
+    set_env_var FABRIC8_BINDADDRESS "${FABRIC8_BINDADDRESS}" env
+
     export FABRIC8_LISTEN_ADDRESS=$OPENSHIFT_FUSE_IP
+    set_env_var FABRIC8_LISTEN_ADDRESS "${FABRIC8_LISTEN_ADDRESS}" env
+
     export FABRIC8_PROFILES=openshift
+    set_env_var FABRIC8_PROFILES "${FABRIC8_PROFILES}" env
+
     export FABRIC8_GLOBAL_RESOLVER=publichostname
+    set_env_var FABRIC8_GLOBAL_RESOLVER "${FABRIC8_GLOBAL_RESOLVER}" env
+
     export FABRIC8_MANUALIP=$OPENSHIFT_GEAR_DNS
+    set_env_var FABRIC8_MANUALIP "${FABRIC8_MANUALIP}" env
+
     export FABRIC8_LOCAL_CONTAINER_ADDRESS=$OPENSHIFT_GEAR_DNS
+    set_env_var FABRIC8_LOCAL_CONTAINER_ADDRESS "${FABRIC8_LOCAL_CONTAINER_ADDRESS}" env
+
     export FABRIC8_FABRIC_ENVIRONMENT=openshift
+    set_env_var FABRIC8_FABRIC_ENVIRONMENT "${FABRIC8_FABRIC_ENVIRONMENT}" env
 
 		export OPENSHIFT_FUSE_ZOOKEEPER_URL=${OPENSHIFT_GEAR_DNS}:${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}
     set_env_var OPENSHIFT_FUSE_ZOOKEEPER_URL "${OPENSHIFT_FUSE_ZOOKEEPER_URL}" env
-		replace_property_value ensemble.auto.start true $FUSE_SYSPROPS_FILE
-		echo "zookeeper.server.port=${OPENSHIFT_FUSE_ZOOKEEPER_PORT}" >> $FUSE_SYSPROPS_FILE
-		echo "zookeeper.server.connection.port=${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}" >> $FUSE_SYSPROPS_FILE
+
+    export FABRIC8_ZOOKEEPER_URL=$OPENSHIFT_FUSE_ZOOKEEPER_URL
+    set_env_var FABRIC8_ZOOKEEPER_URL "${FABRIC8_ZOOKEEPER_URL}" env
+
+		#replace_property_value ensemble.auto.start true $FUSE_SYSPROPS_FILE
+		#echo "zookeeper.server.port=${OPENSHIFT_FUSE_ZOOKEEPER_PORT}" >> $FUSE_SYSPROPS_FILE
+		#echo "zookeeper.server.connection.port=${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}" >> $FUSE_SYSPROPS_FILE
 	fi
 
 	client_result ""
