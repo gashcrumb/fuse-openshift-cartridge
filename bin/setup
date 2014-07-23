@@ -4,12 +4,16 @@ source $OPENSHIFT_CARTRIDGE_SDK_BASH
 
 ARTIFACT=fabric8-karaf
 BUILD=CR5
-VERSION=1.1.0.${BUILD}
+#VERSION=1.1.0.${BUILD}
+VERSION=1.1.0-SNAPSHOT
 DISTRO=${ARTIFACT}-${VERSION}
 DISTRO_ZIP=${DISTRO}.zip
+DISTRO_FILE=fabric8.zip
 GROUPID="io/fabric8"
 REPO="http://central.maven.org/maven2"
-TARGET_URL="${REPO}/${GROUPID}/${ARTIFACT}/${VERSION}/${DISTRO_ZIP}"
+#TARGET_URL="${REPO}/${GROUPID}/${ARTIFACT}/${VERSION}/${DISTRO_ZIP}"
+# TODO - for testing...
+TARGET_URL="https://dl.dropboxusercontent.com/u/2705592/fabric8-karaf-1.1.0-SNAPSHOT.zip"
 
 case "$1" in
   -v|--version)
@@ -26,9 +30,9 @@ cd $OPENSHIFT_FUSE_DIR
 #if [ $HTTP_CODE != 200 ]; then
 #  curl --write-out %{http_code} --silent --output fabric8-karaf-1.0.0.${BUILD}.zip https://repository.jboss.org/nexus/content/groups/ea/io/fabric8/fabric8-karaf/1.0.0.${BUILD}/fabric8-karaf-1.0.0.${BUILD}.zip
 #fi
-curl --silent --output ${DISTRO_ZIP} ${TARGET_URL} && \
-  unzip ${DISTRO_ZIP} && \
-  rm ${DISTRO_ZIP} && \
+curl --silent --output ${DISTRO_FILE} ${TARGET_URL} && \
+  unzip ${DISTRO_FILE} && \
+  rm ${DISTRO_FILE} && \
   ln -s ${DISTRO} container
 
 
