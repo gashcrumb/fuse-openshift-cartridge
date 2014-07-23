@@ -8,12 +8,8 @@ VERSION=1.1.0.${BUILD}
 DISTRO=${ARTIFACT}-${VERSION}
 DISTRO_ZIP=${DISTRO}.zip
 GROUPID="io/fabric8"
-REPO="http://repository.jboss.org/nexus/content/repositories/fs-public"
+REPO="http://central.maven.org/maven2"
 TARGET_URL="${REPO}/${GROUPID}/${ARTIFACT}/${VERSION}/${DISTRO_ZIP}"
-
-# TODO - for testing only...
-TARGET_URL="https://dl.dropboxusercontent.com/u/2705592/fabric8-karaf-1.1.0.CR5.zip"
-
 
 case "$1" in
   -v|--version)
