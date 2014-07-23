@@ -28,6 +28,7 @@ cd $OPENSHIFT_FUSE_DIR
 #fi
 curl --silent --output ${DISTRO_ZIP} ${TARGET_URL} && \
   unzip ${DISTRO_ZIP} && \
+  rm ${DISTRO_ZIP} && \
   ln -s ${DISTRO} container
 
 

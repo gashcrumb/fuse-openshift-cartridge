@@ -62,7 +62,7 @@ function setup() {
     export FABRIC8_BINDADDRESS=$OPENSHIFT_FUSE_IP
     set_env_var FABRIC8_BINDADDRESS "${FABRIC8_BINDADDRESS}" env
 
-    export FABRIC8_LISTEN_ADDRESS=$OPENSHIFT_FUSE_IP
+    export FABRIC8_LISTEN_ADDRESS=v$OPENSHIFT_FUSE_IP
     set_env_var FABRIC8_LISTEN_ADDRESS "${FABRIC8_LISTEN_ADDRESS}" env
 
     export FABRIC8_PROFILES=openshift
@@ -74,8 +74,8 @@ function setup() {
     export FABRIC8_MANUALIP=$OPENSHIFT_GEAR_DNS
     set_env_var FABRIC8_MANUALIP "${FABRIC8_MANUALIP}" env
 
-    export FABRIC8_LOCAL_CONTAINER_ADDRESS=$OPENSHIFT_GEAR_DNS
-    set_env_var FABRIC8_LOCAL_CONTAINER_ADDRESS "${FABRIC8_LOCAL_CONTAINER_ADDRESS}" env
+    #export FABRIC8_LOCAL_CONTAINER_ADDRESS=$OPENSHIFT_GEAR_DNS
+    #set_env_var FABRIC8_LOCAL_CONTAINER_ADDRESS "${FABRIC8_LOCAL_CONTAINER_ADDRESS}" env
 
     export FABRIC8_FABRIC_ENVIRONMENT=openshift
     set_env_var FABRIC8_FABRIC_ENVIRONMENT "${FABRIC8_FABRIC_ENVIRONMENT}" env
@@ -98,10 +98,11 @@ function setup() {
 		echo "zookeeper.server.connection.port=${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}" >> $FUSE_SYSPROPS_FILE
 	fi
 
+  # TODO - don't forget to take this out
   client_result ""
 
   client_result "Environment: "
-  for each in `env`; do
+  for each in `env | sort`; do
     client_result $each
   done
 
