@@ -15,7 +15,8 @@ function replace_property_value {
 }
 
 function run_distro {
-  nohup ${FUSE_BIN_DIR}/fabric8 server > $OPENSHIFT_FUSE_DIR/log/console.out 2>&1 &
+  mkdir -p ${OPENSHIFT_FUSE_DIR}/log
+  nohup ${FUSE_BIN_DIR}/fabric8 server > ${OPENSHIFT_FUSE_DIR}/log/console.out 2>&1 &
   wait_for_start    
 }
 
@@ -37,12 +38,13 @@ function setup() {
   fi
 
   # should keep these files readable only to the current user
+  OLD_UMASK=`umask`
   umask 0077
 	# Store password
 	echo "admin=${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD},admin" > $FUSE_USRPROPS_FILE
 	echo "${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}" > $FUSE_PASSWD_FILE
 	echo "zookeeper.password=${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}" >> $FUSE_SYSPROPS_FILE
-  umask 0022
+  umask $OLD_UMASK
 
 	# Configure to join an existing fabric
 	join=false
