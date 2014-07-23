@@ -98,6 +98,10 @@ function setup() {
 		echo "zookeeper.server.connection.port=${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}" >> $FUSE_SYSPROPS_FILE
 	fi
 
+  client_result "Environment: "
+  client_result `env`
+  client_result ""
+
 	client_result ""
 	client_result "Fuse created successfully.  Please make note of these credentials:"
 	client_result ""
