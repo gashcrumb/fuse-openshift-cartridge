@@ -14,6 +14,11 @@ function replace_property_value {
   mv $3.tmp $3
 }
 
+function run_distro {
+  nohup ${FUSE_BIN_DIR}/fabric8 server > $OPENSHIFT_FUSE_DIR/log/console.out 2>&1 &
+  wait_for_start    
+}
+
 function setup() {
 	client_result "Setting up fabric container"
 
@@ -50,8 +55,8 @@ function setup() {
                 set_env_var OPENSHIFT_FUSE_ZOOKEEPER_URL "${OPENSHIFT_FUSE_ZOOKEEPER_URL}" env
 		join=true
 	# Turn into a fabric root container
-	else
-		# 		client_result "Configuring zookeeper server"
+  else
+
 		client_result "Configuring zookeeper server"
 
     export FABRIC8_KARAF_NAME=$OPENSHIFT_APP_NAME
@@ -128,9 +133,8 @@ function setup() {
 
 	cart_props "username=admin"
 	cart_props "password=${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}"
-		
-	${FUSE_BIN_DIR}/start
-	wait_for_start    
+
+  run_distro
 	
 	if $join; then
         ${FUSE_BIN_DIR}/client -r 3 -d 10 -h ${OPENSHIFT_FUSE_IP} -a ${OPENSHIFT_FUSE_SSH_PORT} -u admin -p ${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD} "wait-for-service io.fabric8.boot.commands.service.Join"
@@ -151,8 +155,7 @@ function start() {
     if [ ! -f $FABRIC_CHECKER ]; then
       setup
     else
-      ${FUSE_BIN_DIR}/fabric8-start
-      wait_for_start    
+      run_distro
     fi
     client_message "Started Fuse cart"
   fi
