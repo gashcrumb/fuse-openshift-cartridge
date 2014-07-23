@@ -86,6 +86,12 @@ function setup() {
     export FABRIC8_ZOOKEEPER_URL=$OPENSHIFT_FUSE_ZOOKEEPER_URL
     set_env_var FABRIC8_ZOOKEEPER_URL "${FABRIC8_ZOOKEEPER_URL}" env
 
+    export FABRIC8_AGENT_AUTO_START=true
+    set_env_var FABRIC8_AGENT_AUTO_START "${FABRIC8_AGENT_AUTO_START}" env
+
+    export FABRIC8_ENSEMBLE_AUTO_START=true
+    set_env_var FABRIC8_ENSEMBLE_AUTO_START "${FABRIC8_ENSEMBLE_AUTO_START}" env
+
 		#replace_property_value ensemble.auto.start true $FUSE_SYSPROPS_FILE
     echo "ensemble.auto.start=true" >> $FUSE_SYSPROPS_FILE
 		echo "zookeeper.server.port=${OPENSHIFT_FUSE_ZOOKEEPER_PORT}" >> $FUSE_SYSPROPS_FILE
@@ -110,7 +116,7 @@ function setup() {
 	cart_props "username=admin"
 	cart_props "password=${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}"
 		
-	${FUSE_BIN_DIR}/fabric8-start
+	${FUSE_BIN_DIR}/start
 	wait_for_start    
 	
 	if $join; then
