@@ -49,6 +49,9 @@ log4j.appender.sift.appender.file=<%= ENV['OPENSHIFT_FUSE_LOG_DIR'] %>${karaf.na
 log4j.appender.sift.appender.append=true
 
 #tone down some of the logging
+log4j.logger.io.fabric8.internal = DEBUG
+log4j.logger.io.fabric8.service = DEBUG
+log4j.logger.io.fabric8.openshift = DEBUG
 log4j.logger.org.jboss.gravia = WARN
 log4j.logger.org.apache.karaf.shell.scr = WARN
 log4j.logger.org.apache.aries.jmx = WARN
