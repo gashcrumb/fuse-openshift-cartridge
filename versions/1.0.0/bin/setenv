@@ -46,7 +46,7 @@
 
 # Compute memory settings
 if [ -z "$OPENSHIFT_GEAR_MEMORY_MB" ]; then
-        OPENSHIFT_GEAR_MEMORY_MB=512
+  OPENSHIFT_GEAR_MEMORY_MB=512
 fi
 if [ -z "$JVM_HEAP_RATIO" ]; then
 	JVM_HEAP_RATIO=0.75
@@ -62,9 +62,9 @@ if [ $max_permgen -gt 256 ]; then
 fi
 export JAVA_MIN_MEM=128M
 export JAVA_PERM_MEM=16M
-export JAVA_MAX_MEM=${max_heap}M
-export JAVA_MAX_PERM_MEM=${max_permgen}M
+export JAVA_MAX_MEM=${max_heap}
+export JAVA_MAX_PERM_MEM=${max_permgen}
 
 # Export options
 #export JAVA_OPTS="-server -XX:+UnlockDiagnosticVMOptions -XX:+UnsyncloadClass -Xms$JAVA_MIN_MEM -Xmx$JAVA_MAX_MEM -XX:PermSize=$JAVA_PERM_MEM -XX:MaxPermSize=$JAVA_MAX_PERM_MEM"
-export JAVA_OPTS="-server -XX:+UnlockDiagnosticVMOptions -Xms$JAVA_MIN_MEM -Xmx$JAVA_MAX_MEM -XX:PermSize=$JAVA_PERM_MEM -XX:MaxPermSize=$JAVA_MAX_PERM_MEM"
+export JAVA_OPTS="-server -Xms$JAVA_MIN_MEM -Xmx$JAVA_MAX_MEM -XX:PermSize=$JAVA_PERM_MEM -XX:MaxPermSize=$JAVA_MAX_PERM_MEM"

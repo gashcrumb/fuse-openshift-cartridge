@@ -91,12 +91,12 @@ com.sun.org.apache.xml.internal.dtm.DTMManager=com.sun.org.apache.xml.internal.d
 #
 # Fabric configuration
 #
-bind.address=<%= ENV['OPENSHIFT_FUSE_IP'] %>
+#bind.address=<%= ENV['OPENSHIFT_FUSE_IP'] %>
 
-global.resolver=publichostname
-local.resolver=manualip
+#global.resolver=publichostname
+#local.resolver=manualip
 
-manualip=<%= ENV['OPENSHIFT_GEAR_DNS'] %>
+#manualip=<%= ENV['OPENSHIFT_GEAR_DNS'] %>
 #publicip=<%= ENV['OPENSHIFT_FUSE_IP'] %>
 
 org.osgi.service.http.connection.port=80
@@ -105,9 +105,9 @@ org.ops4j.pax.web.listening.addresses=<%= ENV['OPENSHIFT_FUSE_IP'] %>
 
 #profiles=hawtio openshift
 
-fabric.environment=openshift
+#fabric.environment=openshift
 
-ensemble.auto.start=true
-agent.auto.start=true
+#ensemble.auto.start=true
+#agent.auto.start=true
 
 
