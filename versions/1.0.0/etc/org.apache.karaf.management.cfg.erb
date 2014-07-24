@@ -36,7 +36,7 @@ rmiRegistryHost = <%= ENV['OPENSHIFT_FUSE_IP'] %>
 #
 rmiServerPort = <%= ENV['OPENSHIFT_FUSE_RMI_SERVER_PORT'] %>
 
-rmiServerHost = 0.0.0.0
+rmiServerHost = <%= ENV['OPENSHIFT_FUSE_IP'] %>
 
 #
 # Name of the JAAS realm used for authentication
