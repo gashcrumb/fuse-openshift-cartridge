@@ -138,8 +138,6 @@ function setup() {
 	cart_props "password=${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD}"
 
   run_distro
-  stop
-  run_distro
 	
 	if $join; then
         ${FUSE_BIN_DIR}/client -r 3 -d 10 -h ${OPENSHIFT_FUSE_IP} -a ${OPENSHIFT_FUSE_SSH_PORT} -u admin -p ${OPENSHIFT_FUSE_ZOOKEEPER_PASSWORD} "wait-for-service io.fabric8.boot.commands.service.Join"
