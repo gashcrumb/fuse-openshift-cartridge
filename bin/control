@@ -15,9 +15,9 @@ function replace_property_value {
 }
 
 function run_distro {
-  mkdir -p ${OPENSHIFT_FUSE_DIR}/log
+  #mkdir -p ${OPENSHIFT_FUSE_DIR}/log
   export JAVA_OPTS="-Dagent.auto.start=true -Densemble.auto.start=true"
-  nohup ${FUSE_BIN_DIR}/fabric8 server > ${OPENSHIFT_FUSE_DIR}/log/console.out 2>&1 &
+  ${FUSE_BIN_DIR/start
   wait_for_start    
 }
 
