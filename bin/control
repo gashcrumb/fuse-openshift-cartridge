@@ -105,7 +105,7 @@ function setup() {
     set_env_var FABRIC8_ENSEMBLE_AUTO_START "${FABRIC8_ENSEMBLE_AUTO_START}" env
 
 		#replace_property_value ensemble.auto.start true $FUSE_SYSPROPS_FILE
-    echo "ensemble.auto.start=true" >> $FUSE_SYSPROPS_FILE
+    #echo "ensemble.auto.start=true" >> $FUSE_SYSPROPS_FILE
 		echo "zookeeper.server.port=${OPENSHIFT_FUSE_ZOOKEEPER_PORT}" >> $FUSE_SYSPROPS_FILE
 		echo "zookeeper.server.connection.port=${OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT}" >> $FUSE_SYSPROPS_FILE
 	fi

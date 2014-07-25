@@ -103,11 +103,10 @@ org.osgi.service.http.connection.port=80
 org.osgi.service.http.port=<%= ENV['OPENSHIFT_FUSE_HTTP_PORT'] %>
 org.ops4j.pax.web.listening.addresses=<%= ENV['OPENSHIFT_FUSE_IP'] %>
 
-#profiles=hawtio openshift
-
 #fabric.environment=openshift
 
-#ensemble.auto.start=true
-#agent.auto.start=true
+ensemble.auto.start=true
+agent.auto.start=true
+profiles=openshift
 
 
