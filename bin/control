@@ -17,7 +17,7 @@ function replace_property_value {
 function run_distro {
   #mkdir -p ${OPENSHIFT_FUSE_DIR}/log
   export JAVA_OPTS="-Dagent.auto.start=true -Densemble.auto.start=true"
-  ${FUSE_BIN_DIR/start
+  ${FUSE_BIN_DIR}/start
   wait_for_start    
 }
 
