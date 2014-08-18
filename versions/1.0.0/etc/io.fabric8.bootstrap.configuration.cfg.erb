@@ -14,6 +14,7 @@ fabric.environment=openshift
 profiles=openshift
 
 zookeeper.server.port=<% ENV['OPENSHIFT_FUSE_ZOOKEEPER_PORT'] %>
+clientPort=<% ENV['OPENSHIFT_FUSE_ZOOKEEPER_PORT'] %>
 zookeeper.server.connection.port=<% ENV['OPENSHIFT_FUSE_ZOOKEEPER_PROXY_PORT'] %>
 
 #runtime.id=<% ENV['OPENSHIFT_APP_NAME'] %>
